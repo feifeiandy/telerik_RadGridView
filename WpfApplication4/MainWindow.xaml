@@ -1,0 +1,111 @@
+﻿<Window  x:Class="WpfApplication4.MainWindow"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfApplication4"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfApplication4;component/Dictionary1.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <local:MVVM x:Key="mm"></local:MVVM>
+            <!--分组区域相关样式设置-->
+            <Style TargetType="telerik:GridViewGroupPanel">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate  TargetType="telerik:GridViewGroupPanel">
+                            <StackPanel Background="#FF5DBDE5" Orientation="Horizontal">
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                                <TextBlock x:Name="panelText" Foreground="White" FontFamily="Microsoft YaHei UI" FontSize="18" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="False" Margin="{TemplateBinding Padding}"  Text="请将需要分组的列拖拽至此" VerticalAlignment="Center"></TextBlock>
+                                <TextBlock x:Name="panelTextGrouped" Foreground="White" FontFamily="Microsoft YaHei UI" FontSize="18" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="False" Margin="{TemplateBinding Padding}"  Text="当前分组:" Visibility="Collapsed" VerticalAlignment="Center"/>
+                                <ItemsPresenter VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="HasItems" Value="True">
+                                    <Setter Property="Visibility" TargetName="panelText" Value="Collapsed"/>
+                                    <Setter Property="Visibility" TargetName="panelTextGrouped" Value="Visible"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <!--<WrapPanel Height="30">
+            --><!--此处注意 属性Template的类型是ControlTemplate--><!--
+            <TextBox Height="30" Width="150" Template="{StaticResource ResourceKey=bt}" Foreground="Red" VerticalContentAlignment="Center" HorizontalAlignment="Center">1111
+            </TextBox>
+
+            --><!--此处注意 属性ContentTemplate的类型是DataTemplate-->
+            <!--<Button ContentTemplate=""></Button>--><!--
+        </WrapPanel>-->
+
+        <!--AutoGenerateColumns="False"            自动生成列-->
+        <!--RowIndicatorVisibility="Collapsed" 是否显示指示器-->
+        <!--GridLinesVisibility="None"       是否显示表格边框-->
+        <!--SelectionMode="Extended"                 能否多选-->
+        <!--FrozenColumnCount="4"                  冻结前几列-->
+
+        <StackPanel>
+            <telerik:RadGridView x:Name="tk"
+                                 DataContext="{ StaticResource mm}" ItemsSource="{Binding MyProperty}"  AddingNewDataItem="tk_AddingNewDataItem" RowEditEnded="tk_RowEditEnded" 
+                                 AutoGenerateColumns="False"
+                                 SelectionMode="Extended"
+                                 GroupRenderMode="Flat" 
+                                 RowIndicatorVisibility="Collapsed" 
+                                 GridLinesVisibility="None"           
+                                 EnableColumnVirtualization="True"
+                                 FrozenColumnCount="2"
+                                 
+                                 >
+                
+               
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewToggleRowDetailsColumn></telerik:GridViewToggleRowDetailsColumn>
+                    <telerik:GridViewSelectColumn></telerik:GridViewSelectColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding ID}" Header="编号" >
+                        <telerik:GridViewDataColumn.AggregateFunctions>
+                            <telerik:CountFunction Caption="合计: "/>
+                        </telerik:GridViewDataColumn.AggregateFunctions>
+                    </telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Name}" Header="姓名" IsResizable="False"></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" IsResizable="False"></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Date}" DataFormatString="yy,MMM,dd" Header="日期" ></telerik:GridViewDataColumn>
+                </telerik:RadGridView.Columns>
+                <telerik:RadGridView.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBox>ee</TextBox>
+                    </DataTemplate>
+                </telerik:RadGridView.RowDetailsTemplate>
+                
+                <telerik:RadGridView.GroupDescriptors>
+                    <telerik:GroupDescriptor  Member="ID" DisplayContent="编号" SortDirection="Ascending">
+                    </telerik:GroupDescriptor>
+                </telerik:RadGridView.GroupDescriptors>
+                
+                <telerik:RadGridView.SortDescriptors>
+                    <telerik:SortDescriptor Member="Name" SortDirection="Descending"></telerik:SortDescriptor>
+                </telerik:RadGridView.SortDescriptors>
+               
+            </telerik:RadGridView>
+            <Button Click="Button_Click">添加</Button>
+
+            <Button>ww</Button>
+            
+        </StackPanel>
+    </Grid>
+</Window>
